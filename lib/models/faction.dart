@@ -1,9 +1,3 @@
-// ============================================================
-// PUNTO 1 — Modelo de Facción
-// Este archivo define las 3 facciones disponibles.
-// Los compañeros que trabajen M3 y tipografía usan este enum.
-// ============================================================
-
 enum Faction { hacker, enforcer, ghost }
 
 class FactionData {
@@ -11,7 +5,7 @@ class FactionData {
   final String displayName;
   final String description;
   final String imagePath;
-  final String seedColorHex; // PUNTO 2 (M3): tu compañero leerá esto
+  final String seedColorHex; 
 
   const FactionData({
     required this.faction,
@@ -29,20 +23,20 @@ const List<FactionData> factions = [
     displayName: 'Hacker',
     description: 'Infiltra sistemas. El conocimiento es poder.',
     imagePath: 'assets/images/hacker.png',
-    seedColorHex: '#00FF41', // verde terminal
+    seedColorHex: '#00FF41', 
   ),
   FactionData(
     faction: Faction.enforcer,
     displayName: 'Enforcer',
     description: 'Ejecuta órdenes. La fuerza es la ley.',
     imagePath: 'assets/images/enforcer.png',
-    seedColorHex: '#FF4500', // rojo sangre
+    seedColorHex: '#FF4500', 
   ),
   FactionData(
     faction: Faction.ghost,
     displayName: 'Ghost',
     description: 'Desaparece en las sombras. Nadie te vio.',
     imagePath: 'assets/images/ghost.png',
-    seedColorHex: '#8A2BE2', // violeta oscuro
+    seedColorHex: '#8A2BE2', 
   ),
 ];

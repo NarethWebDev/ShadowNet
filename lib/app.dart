@@ -9,8 +9,6 @@ class ShadowNetApp extends StatelessWidget {
     return MaterialApp(
       title: 'ShadowNet',
       debugShowCheckedModeBanner: false,
-      // PUNTO 2 (M3): tu compañero reemplazará este theme
-      // con un ColorScheme.fromSeed() dinámico según la facción
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
           seedColor: Colors.green,

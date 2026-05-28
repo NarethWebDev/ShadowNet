@@ -1,10 +1,3 @@
-// ============================================================
-// PUNTO 1 — Widget Selector de Facción
-// Muestra los 3 botones de facción.
-// El compañero del PUNTO 2 (M3) conectará selectedFaction
-// al ColorScheme dinámico desde aquí.
-// ============================================================
-
 import 'package:flutter/material.dart';
 import '../models/faction.dart';
 
@@ -40,8 +33,6 @@ class FactionSelector extends StatelessWidget {
             return Expanded(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 4),
-                // PUNTO 3 (Semantics): tu compañero envolverá esto
-                // con Semantics(label: 'Seleccionar facción ${factionData.displayName}')
                 child: _FactionButton(
                   factionData: factionData,
                   isSelected: isSelected,
@@ -91,8 +82,6 @@ class _FactionButton extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 8),
             child: Column(
               children: [
-                // Ícono placeholder — tu compañero del PUNTO 2
-                // reemplazará esto con Image.asset(factionData.imagePath)
                 Icon(
                   _iconForFaction(factionData.faction),
                   color: isSelected ? Colors.white : Colors.white54,
@@ -102,8 +91,6 @@ class _FactionButton extends StatelessWidget {
                 Text(
                   factionData.displayName.toUpperCase(),
                   style: TextStyle(
-                    // PUNTO 4 (Tipografía): tu compañero cambiará
-                    // fontFamily aquí a JetBrains Mono o Urbanist
                     fontSize: 11,
                     fontWeight: FontWeight.bold,
                     letterSpacing: 1.5,
