@@ -41,7 +41,7 @@ shadownet/
 
 ---
 
-## ▶ Cómo correr el proyecto
+## Cómo correr el proyecto
 
 ```bash
 # 1. Clonar el repositorio
