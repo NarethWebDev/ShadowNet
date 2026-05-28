@@ -7,24 +7,36 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
 import 'package:shadownet_group/main.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  testWidgets('AgentProfileScreen muestra el título correctamente',
+      (WidgetTester tester) async {
+    // Construye la app
+    await tester.pumpWidget(const ShadowNetApp());
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    // Verifica que el AppBar tiene el título esperado
+    expect(find.text('SHADOWNET // PERFIL DE AGENTE'), findsOneWidget);
+  });
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
+  testWidgets('Muestra mensaje inicial cuando no hay facción seleccionada',
+      (WidgetTester tester) async {
+    await tester.pumpWidget(const ShadowNetApp());
+
+    expect(
+      find.text('> Selecciona tu facción para continuar_'),
+      findsOneWidget,
+    );
+  });
+
+  testWidgets('Seleccionar Hacker muestra su nombre en pantalla',
+      (WidgetTester tester) async {
+    await tester.pumpWidget(const ShadowNetApp());
+
+    // Toca el botón de Hacker
+    await tester.tap(find.text('HACKER'));
     await tester.pump();
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    expect(find.text('HACKER'), findsWidgets);
   });
 }

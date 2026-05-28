@@ -13,13 +13,15 @@ class FactionSelector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme; // 👈 tema activo
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
+        Text(
           '// SELECCIONA TU FACCIÓN',
           style: TextStyle(
-            color: Colors.white54,
+            color: colorScheme.primary.withOpacity(0.6), // 👈 dinámico
             fontSize: 12,
             letterSpacing: 2,
           ),
@@ -60,17 +62,21 @@ class _FactionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme; 
+
     return AnimatedContainer(
       duration: const Duration(milliseconds: 300),
       curve: Curves.easeInOut,
       decoration: BoxDecoration(
         border: Border.all(
-          color: isSelected ? Colors.white : Colors.white24,
+          color: isSelected
+              ? colorScheme.primary                      
+              : colorScheme.outline.withOpacity(0.3),
           width: isSelected ? 2 : 1,
         ),
         borderRadius: BorderRadius.circular(8),
         color: isSelected
-            ? Colors.white.withOpacity(0.1)
+            ? colorScheme.primaryContainer.withOpacity(0.2) 
             : Colors.transparent,
       ),
       child: Material(
@@ -78,13 +84,16 @@ class _FactionButton extends StatelessWidget {
         child: InkWell(
           borderRadius: BorderRadius.circular(8),
           onTap: onTap,
+          splashColor: colorScheme.primary.withOpacity(0.2), 
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 8),
             child: Column(
               children: [
                 Icon(
                   _iconForFaction(factionData.faction),
-                  color: isSelected ? Colors.white : Colors.white54,
+                  color: isSelected
+                      ? colorScheme.primary                  
+                      : colorScheme.onSurface.withOpacity(0.4),
                   size: 28,
                 ),
                 const SizedBox(height: 8),
@@ -94,7 +103,9 @@ class _FactionButton extends StatelessWidget {
                     fontSize: 11,
                     fontWeight: FontWeight.bold,
                     letterSpacing: 1.5,
-                    color: isSelected ? Colors.white : Colors.white54,
+                    color: isSelected
+                        ? colorScheme.primary             
+                        : colorScheme.onSurface.withOpacity(0.4),
                   ),
                 ),
               ],

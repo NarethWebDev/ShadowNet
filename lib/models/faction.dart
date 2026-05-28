@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 enum Faction { hacker, enforcer, ghost }
 
 class FactionData {
@@ -5,7 +7,7 @@ class FactionData {
   final String displayName;
   final String description;
   final String imagePath;
-  final String seedColorHex; 
+  final String seedColorHex;
 
   const FactionData({
     required this.faction,
@@ -14,6 +16,11 @@ class FactionData {
     required this.imagePath,
     required this.seedColorHex,
   });
+
+  Color get seedColor {
+    final hex = seedColorHex.replaceAll('#', '');
+    return Color(int.parse('FF$hex', radix: 16));
+  }
 }
 
 // Catálogo completo de facciones
@@ -23,20 +30,20 @@ const List<FactionData> factions = [
     displayName: 'Hacker',
     description: 'Infiltra sistemas. El conocimiento es poder.',
     imagePath: 'assets/images/hacker.png',
-    seedColorHex: '#00FF41', 
+    seedColorHex: '#00FF41',
   ),
   FactionData(
     faction: Faction.enforcer,
     displayName: 'Enforcer',
     description: 'Ejecuta órdenes. La fuerza es la ley.',
     imagePath: 'assets/images/enforcer.png',
-    seedColorHex: '#FF4500', 
+    seedColorHex: '#FF4500',
   ),
   FactionData(
     faction: Faction.ghost,
     displayName: 'Ghost',
     description: 'Desaparece en las sombras. Nadie te vio.',
     imagePath: 'assets/images/ghost.png',
-    seedColorHex: '#8A2BE2', 
+    seedColorHex: '#8A2BE2',
   ),
 ];
