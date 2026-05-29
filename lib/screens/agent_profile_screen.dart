@@ -39,6 +39,34 @@ class _AgentProfileScreenState extends State<AgentProfileScreen> {
     widget.onSeedColorChanged(data.seedColor);
   }
 
+  /// Muestra un diálogo de confirmación antes de cerrar sesión.
+  void _handleLogout() {
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        backgroundColor: const Color(0xFF0A0A0F),
+        title: const Text(
+          'Confirmar salida',
+          style: TextStyle(color: Colors.white),
+        ),
+        content: const Text(
+          '¿Seguro que deseas finalizar la misión y borrar el rastro?',
+          style: TextStyle(color: Colors.white54),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(ctx).pop(),
+            child: const Text('Cancelar'),
+          ),
+          TextButton(
+            onPressed: () => Navigator.of(ctx).pop(),
+            child: const Text('Confirmar'),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
@@ -60,6 +88,20 @@ class _AgentProfileScreenState extends State<AgentProfileScreen> {
               letterSpacing: 3,
             ),
           ),
+          // Botón de cerrar sesión con label especial para lector de pantalla
+          actions: [
+            Semantics(
+              button: true,
+              label: 'Botón: Finalizar misión y borrar rastro',
+              hint: 'Cierra la sesión del agente actual',
+              excludeSemantics: true,
+              child: IconButton(
+                icon: const Icon(Icons.logout, color: Colors.white54),
+                onPressed: _handleLogout,
+                tooltip: 'Finalizar misión',
+              ),
+            ),
+          ],
         ),
         body: SafeArea(
           child: Padding(
