@@ -3,6 +3,7 @@ import '../models/faction.dart';
 import '../widgets/faction_selector.dart';
 
 /// Pantalla principal de perfil del agente ShadowNet.
+/// Implementa semántica completa (Semantics) para accesibilidad con lectores de pantalla.
 class AgentProfileScreen extends StatefulWidget {
   final ValueChanged<Color> onSeedColorChanged;
 
@@ -59,7 +60,10 @@ class _AgentProfileScreenState extends State<AgentProfileScreen> {
             child: const Text('Cancelar'),
           ),
           TextButton(
-            onPressed: () => Navigator.of(ctx).pop(),
+            onPressed: () {
+              Navigator.of(ctx).pop();
+              // Aquí iría la lógica real de cierre de sesión
+            },
             child: const Text('Confirmar'),
           ),
         ],
@@ -77,18 +81,25 @@ class _AgentProfileScreenState extends State<AgentProfileScreen> {
       color: _backgroundColor,
       child: Scaffold(
         backgroundColor: Colors.transparent,
+
+        // ── COMMIT 4: AppBar con semántica ──────────────────────────────────
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,
-          title: const Text(
-            'SHADOWNET // PERFIL DE AGENTE',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 13,
-              letterSpacing: 3,
+          // Semantics en el título de la AppBar
+          title: Semantics(
+            header: true,
+            label: 'ShadowNet, pantalla de perfil de agente',
+            child: const Text(
+              'SHADOWNET // PERFIL DE AGENTE',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 13,
+                letterSpacing: 3,
+              ),
             ),
           ),
-          // Botón de cerrar sesión con label especial para lector de pantalla
+          // ── COMMIT 3: Botón de cerrar sesión con label especial ────────────
           actions: [
             Semantics(
               button: true,
@@ -103,6 +114,7 @@ class _AgentProfileScreenState extends State<AgentProfileScreen> {
             ),
           ],
         ),
+
         body: SafeArea(
           child: Padding(
             padding: const EdgeInsets.all(20),
@@ -110,7 +122,7 @@ class _AgentProfileScreenState extends State<AgentProfileScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
 
-                // Imagen del agente con semántica para lector de pantalla
+                // ── COMMIT 2: Imagen del agente con semántica ───────────────
                 Center(
                   child: Semantics(
                     image: true,
@@ -156,6 +168,7 @@ class _AgentProfileScreenState extends State<AgentProfileScreen> {
 
                 const SizedBox(height: 32),
 
+                // Selector de facción (ya tiene Semantics en su propio archivo)
                 FactionSelector(
                   selectedFaction: _selectedFaction,
                   onFactionSelected: _onFactionSelected,
@@ -163,11 +176,11 @@ class _AgentProfileScreenState extends State<AgentProfileScreen> {
 
                 const SizedBox(height: 24),
 
+                // ── COMMIT 2: Nombre y descripción de la facción con semántica
                 if (_currentFaction != null) ...[
                   Divider(color: colorScheme.primary.withOpacity(0.3)),
                   const SizedBox(height: 16),
 
-                  // Nombre de la facción con semántica
                   Semantics(
                     label: 'Nombre de facción: ${_currentFaction!.displayName}',
                     child: Text(
@@ -183,9 +196,9 @@ class _AgentProfileScreenState extends State<AgentProfileScreen> {
 
                   const SizedBox(height: 8),
 
-                  // Descripción de la facción con semántica
                   Semantics(
-                    label: 'Descripción de la facción: ${_currentFaction!.description}',
+                    label:
+                        'Descripción de la facción: ${_currentFaction!.description}',
                     child: Text(
                       _currentFaction!.description,
                       style: const TextStyle(
@@ -197,9 +210,9 @@ class _AgentProfileScreenState extends State<AgentProfileScreen> {
                   ),
                 ] else ...[
 
-                  // Instrucción inicial con semántica en tiempo real
+                  // ── COMMIT 2: Instrucción inicial con semántica ─────────────
                   Semantics(
-                    liveRegion: true,
+                    liveRegion: true, // anuncia el cambio en tiempo real
                     label: 'Instrucción: selecciona una facción para continuar',
                     child: const Center(
                       child: Text(
