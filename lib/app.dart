@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'screens/agent_profile_screen.dart';
+import 'theme/app_theme.dart'; 
 
-class ShadowNetApp extends StatefulWidget {   
+class ShadowNetApp extends StatefulWidget {
   const ShadowNetApp({super.key});
 
   @override
@@ -9,10 +10,10 @@ class ShadowNetApp extends StatefulWidget {
 }
 
 class _ShadowNetAppState extends State<ShadowNetApp> {
-  Color _seedColor = const Color(0xFF00FF41); 
+  Color _seedColor = const Color(0xFF00FF41);
 
   void _onSeedColorChanged(Color color) {
-    setState(() => _seedColor = color);       
+    setState(() => _seedColor = color);
   }
 
   @override
@@ -20,15 +21,9 @@ class _ShadowNetAppState extends State<ShadowNetApp> {
     return MaterialApp(
       title: 'ShadowNet',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: _seedColor,             
-          brightness: Brightness.dark,
-        ),
-        useMaterial3: true,
-      ),
+      theme: AppTheme.build(_seedColor), 
       home: AgentProfileScreen(
-        onSeedColorChanged: _onSeedColorChanged, 
+        onSeedColorChanged: _onSeedColorChanged,
       ),
     );
   }
