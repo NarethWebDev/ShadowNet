@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/faction.dart';
 
-/// Widget que muestra los botones de selección de facción.
-/// Cada botón tiene etiqueta semántica para lectores de pantalla.
 class FactionSelector extends StatelessWidget {
   final Faction? selectedFaction;
   final ValueChanged<Faction> onFactionSelected;
